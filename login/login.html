@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Synccion</title>
+    <!-- Fonte Google Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Lado Esquerdo: Branding/Apresentação -->
+        <div class="brand-side">
+            <div class="brand-logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span>Synccion</span>
+            </div>
+            
+            <div class="brand-content">
+                <span class="tag">SyncSentrix</span>
+                <h1>Monitoramento industrial centralizado.</h1>
+                <p>Acesse sua conta para visualizar indicadores das suas máquinas e o status em tempo real.</p>
+            </div>
+
+            <div class="brand-footer">
+                <p>&copy; 2026 Synccion. Todos os direitos reservados.</p>
+            </div>
+        </div>
+
+        <!-- Lado Direito: Form de Login -->
+        <div class="form-side">
+            <div class="form-header">
+                <h2>Acessar plataforma</h2>
+                <p>Insira suas credenciais para continuar</p>
+            </div>
+
+            <!-- Preparado para PHP: action envia via POST para login.php -->
+            <form action="login.php" method="POST" id="loginForm" novalidate>
+                
+                <!-- Feedback visual para mensagens vindas do PHP (ex: Erro de senha) -->
+                <!-- No PHP, basta dar um echo numa div se houver $_SESSION['erro'] ou similar -->
+                <div class="alert-box error" id="jsAlert" style="display: none;">
+                    E-mail ou senha inválidos.
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail corporativo</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="seu.nome@empresa.com" 
+                        required 
+                        autocomplete="email"
+                    >
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-wrapper">
+                        <label for="password">Senha</label>
+                        <a href="esqueci-senha.php" class="forgot-link">Esqueceu a senha?</a>
+                    </div>
+                    <div class="password-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="••••••••" 
+                            required
+                        >
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar/Ocultar Senha">
+                            👁️
+                        </button>
+                    </div>
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="options-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="remember" id="remember">
+                        <span class="checkmark"></span>
+                        Lembrar deste dispositivo
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary" id="btnSubmit">
+                    <span>Entrar no sistema</span>
+                </button>
+            </form>
+
+            <div class="form-footer">
+                <p>Não tem uma conta? <a href="#">Solicitar demonstração</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
