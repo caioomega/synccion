@@ -11,10 +11,26 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="is-booting">
+
+  <!-- ================= BOOT (animação de entrada) ================= -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-logo">
+        <svg width="34" height="34" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="boot-c1" cx="7" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
+          <circle class="boot-c2" cx="19" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
+          <path class="boot-link" d="M11 13H15" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span class="boot-name">Synccion</span>
+      </div>
+      <div class="boot-line"><span></span></div>
+      <p class="boot-status mono">inicializando sistema</p>
+    </div>
+  </div>
 
   <!-- ================= HEADER ================= -->
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="container header-bar">
       <a href="#top" class="logo">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +46,8 @@
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#funcionalidades">Funcionalidades</a></li>
           <li><a href="#como-funciona">Como funciona</a></li>
-          <li><a href="#telas">Telas</a></li>
+          <li><a href="#por-que">Por que Synccion</a></li>
+          <li><a href="#planos">Planos</a></li>
         </ul>
       </nav>
 
@@ -77,14 +94,14 @@
     <!-- ================= SOBRE ================= -->
     <section class="intro" id="sobre">
       <div class="container intro-grid">
-        <div class="intro-block">
+        <div class="intro-block reveal">
           <h2>Por que monitorar suas máquinas</h2>
           <p>
             Quando um equipamento apresenta falhas, o processo produtivo é
             afetado — gerando atrasos, custos extras e paradas não planejadas.
           </p>
         </div>
-        <div class="intro-block">
+        <div class="intro-block reveal">
           <h2>O que o Synccion faz</h2>
           <p>
             Centraliza os dados coletados pelos sensores das máquinas e
@@ -99,166 +116,420 @@
     <!-- ================= FUNCIONALIDADES ================= -->
     <section class="features" id="funcionalidades">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Recursos</p>
           <h2>Funcionalidades</h2>
-          <p>Os principais recursos disponíveis no sistema.</p>
+          <p>Os principais recursos disponíveis no sistema, do cadastro à consulta.</p>
         </div>
 
-        <div class="features-showcase">
-          <div class="features-tabs" role="tablist" aria-label="Funcionalidades do Synccion">
-            <button class="feature-tab is-active" data-feature="rf01" role="tab" aria-selected="true">
-              <span class="feature-tab-code mono">RF01</span>
-              <span>Cadastro de máquinas</span>
-            </button>
-            <button class="feature-tab" data-feature="rf02" role="tab" aria-selected="false">
-              <span class="feature-tab-code mono">RF02</span>
-              <span>Monitoramento</span>
-            </button>
-            <button class="feature-tab" data-feature="rf03" role="tab" aria-selected="false">
-              <span class="feature-tab-code mono">RF03</span>
-              <span>Visualização de dados</span>
-            </button>
-            <button class="feature-tab" data-feature="rf04" role="tab" aria-selected="false">
-              <span class="feature-tab-code mono">RF04</span>
-              <span>Identificação de anomalias</span>
-            </button>
-            <button class="feature-tab" data-feature="rf05" role="tab" aria-selected="false">
-              <span class="feature-tab-code mono">RF05</span>
-              <span>Dashboard</span>
-            </button>
-            <button class="feature-tab" data-feature="rf06" role="tab" aria-selected="false">
-              <span class="feature-tab-code mono">RF06</span>
-              <span>Consulta de informações</span>
-            </button>
-          </div>
+        <div class="bento" id="bento">
 
-          <div class="features-panels">
-            <div class="feature-panel is-active" id="rf01" role="tabpanel">
-              <div class="feature-panel-icon">
-                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="1.5"/></svg>
+          <!-- RF01 -->
+          <article class="bento-card span-4" data-visual="list">
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-list">
+                <div class="mini-row"><span class="mono">MQ-001</span><span>Prensa hidráulica</span><i class="mini-check"></i></div>
+                <div class="mini-row"><span class="mono">MQ-002</span><span>Torno CNC</span><i class="mini-check"></i></div>
+                <div class="mini-row"><span class="mono">MQ-003</span><span>Compressor</span><i class="mini-check"></i></div>
               </div>
+            </div>
+            <div class="bento-body">
+              <span class="bento-code mono">RF01</span>
               <h3>Cadastro de máquinas</h3>
               <p>Cadastre e identifique cada máquina monitorada no sistema.</p>
             </div>
+          </article>
 
-            <div class="feature-panel" id="rf02" role="tabpanel">
-              <div class="feature-panel-icon">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M3 13l4-4 4 4 6-8 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <!-- RF02 -->
+          <article class="bento-card span-8" data-visual="chart">
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-chart-head">
+                <span class="mono">TEMPERATURA · MQ-002</span>
+                <span class="live-badge"><i></i>ao vivo</span>
               </div>
+              <div class="mini-chart-wrap">
+                <svg class="mini-chart" viewBox="0 0 400 140" preserveAspectRatio="none">
+                  <g class="mini-grid">
+                    <line x1="0" y1="35" x2="400" y2="35"/>
+                    <line x1="0" y1="70" x2="400" y2="70"/>
+                    <line x1="0" y1="105" x2="400" y2="105"/>
+                  </g>
+                  <path class="chart-area" d="M0 100 L40 92 L80 96 L120 70 L160 78 L200 58 L240 66 L280 40 L320 52 L360 34 L400 42 L400 140 L0 140 Z"/>
+                  <path class="chart-line" d="M0 100 L40 92 L80 96 L120 70 L160 78 L200 58 L240 66 L280 40 L320 52 L360 34 L400 42"/>
+                </svg>
+                <span class="chart-dot"></span>
+              </div>
+            </div>
+            <div class="bento-body">
+              <span class="bento-code mono">RF02</span>
               <h3>Monitoramento</h3>
               <p>Acompanhe em tempo real as informações das máquinas cadastradas.</p>
             </div>
+          </article>
 
-            <div class="feature-panel" id="rf03" role="tabpanel">
-              <div class="feature-panel-icon">
-                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="3" width="8" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="10" width="8" height="11" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+          <!-- RF05 -->
+          <article class="bento-card span-8" data-visual="dash">
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-dash">
+                <div class="mini-tiles">
+                  <div class="mini-tile"><span class="mono">MÁQUINAS</span><strong data-count="12">0</strong></div>
+                  <div class="mini-tile"><span class="mono">ATIVAS</span><strong data-count="11">0</strong></div>
+                  <div class="mini-tile"><span class="mono">ALERTAS</span><strong data-count="1">0</strong></div>
+                </div>
+                <div class="mini-bars">
+                  <i style="--h:.45"></i><i style="--h:.7"></i><i style="--h:.55"></i><i style="--h:.85"></i>
+                  <i style="--h:.6"></i><i style="--h:.95"></i><i style="--h:.5"></i><i style="--h:.75"></i>
+                  <i style="--h:.65"></i><i style="--h:.9"></i>
+                </div>
               </div>
-              <h3>Visualização de dados</h3>
-              <p>Veja os dados coletados apresentados de forma clara e organizada.</p>
             </div>
-
-            <div class="feature-panel" id="rf04" role="tabpanel">
-              <div class="feature-panel-icon">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l9 4.5v9L12 21l-9-4.5v-9L12 3z" stroke="currentColor" stroke-width="1.5"/><path d="M12 12v-3M12 15h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </div>
-              <h3>Identificação de anomalias</h3>
-              <p>Identifique informações fora dos padrões definidos para cada máquina.</p>
-            </div>
-
-            <div class="feature-panel" id="rf05" role="tabpanel">
-              <div class="feature-panel-icon">
-                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.5"/></svg>
-              </div>
+            <div class="bento-body">
+              <span class="bento-code mono">RF05</span>
               <h3>Dashboard</h3>
               <p>Interface centralizada para visualização geral do monitoramento.</p>
             </div>
+          </article>
 
-            <div class="feature-panel" id="rf06" role="tabpanel">
-              <div class="feature-panel-icon">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-4.3-4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <!-- RF04 -->
+          <article class="bento-card span-4" data-visual="alert">
+            <div class="bento-visual" aria-hidden="true">
+              <svg class="mini-alert" viewBox="0 0 200 120">
+                <line class="threshold" x1="0" y1="40" x2="200" y2="40"/>
+                <path class="alert-line" d="M0 90 L30 84 L60 88 L90 76 L120 80 L140 24 L160 78 L200 72"/>
+                <circle class="alert-ring" cx="140" cy="24" r="6"/>
+                <circle class="alert-point" cx="140" cy="24" r="4"/>
+              </svg>
+              <span class="alert-badge"><i></i>Fora do padrão</span>
+            </div>
+            <div class="bento-body">
+              <span class="bento-code mono">RF04</span>
+              <h3>Identificação de anomalias</h3>
+              <p>Identifique informações fora dos padrões definidos para cada máquina.</p>
+            </div>
+          </article>
+
+          <!-- RF03 -->
+          <article class="bento-card span-6" data-visual="viz">
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-viz">
+                <svg class="mini-donut" viewBox="0 0 80 80">
+                  <circle class="donut-bg" cx="40" cy="40" r="32"/>
+                  <circle class="donut-fg" cx="40" cy="40" r="32"/>
+                  <text class="donut-text" x="40" y="45" text-anchor="middle">92%</text>
+                </svg>
+                <div class="mini-hbars">
+                  <div class="mini-hbar"><span class="mono">VIBRAÇÃO</span><i style="--w:.62"></i></div>
+                  <div class="mini-hbar"><span class="mono">TEMP.</span><i style="--w:.81"></i></div>
+                  <div class="mini-hbar"><span class="mono">PRESSÃO</span><i style="--w:.47"></i></div>
+                  <div class="mini-hbar"><span class="mono">ROTAÇÃO</span><i style="--w:.9"></i></div>
+                </div>
               </div>
+            </div>
+            <div class="bento-body">
+              <span class="bento-code mono">RF03</span>
+              <h3>Visualização de dados</h3>
+              <p>Veja os dados coletados apresentados de forma clara e organizada.</p>
+            </div>
+          </article>
+
+          <!-- RF06 -->
+          <article class="bento-card span-6" data-visual="search">
+            <div class="bento-visual" aria-hidden="true">
+              <div class="mini-search">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-4.3-4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span class="mini-search-text mono" data-text="histórico MQ-001"></span>
+                <span class="mini-caret"></span>
+              </div>
+              <div class="mini-results">
+                <div class="mini-result"><span class="mono">14:02</span><span>Leitura de temperatura — 71 °C</span></div>
+                <div class="mini-result"><span class="mono">13:47</span><span>Manutenção preventiva concluída</span></div>
+                <div class="mini-result"><span class="mono">13:10</span><span>Vibração dentro do padrão</span></div>
+              </div>
+            </div>
+            <div class="bento-body">
+              <span class="bento-code mono">RF06</span>
               <h3>Consulta de informações</h3>
               <p>Consulte o histórico e os dados de cada equipamento monitorado.</p>
             </div>
-          </div>
+          </article>
+
         </div>
       </div>
     </section>
 
     <!-- ================= COMO FUNCIONA ================= -->
-    <section class="flow" id="como-funciona">
+    <section class="how" id="como-funciona">
       <div class="container">
-        <div class="section-heading">
-          <h2>Como funciona</h2>
-          <p>Do sensor até a tela do usuário, em sete etapas.</p>
+        <div class="section-heading reveal">
+          <p class="eyebrow">Como funciona</p>
+          <h2>Simples de começar, fácil de manter</h2>
+          <p>Três passos. Nenhum deles exige parar a fábrica ou aprender um sistema complicado.</p>
         </div>
 
-        <ol class="flow-steps">
-          <li><span class="flow-index mono">01</span><span>Máquina</span></li>
-          <li><span class="flow-index mono">02</span><span>Sensor</span></li>
-          <li><span class="flow-index mono">03</span><span>Coleta de dados</span></li>
-          <li><span class="flow-index mono">04</span><span>Sistema</span></li>
-          <li><span class="flow-index mono">05</span><span>Processamento</span></li>
-          <li><span class="flow-index mono">06</span><span>Dashboard</span></li>
-          <li><span class="flow-index mono">07</span><span>Usuário</span></li>
-        </ol>
+        <div class="how-steps">
+
+          <article class="how-step">
+            <div class="how-text">
+              <span class="how-num mono">Passo 1</span>
+              <h3 class="split">Conectamos suas máquinas</h3>
+              <p>Instalamos os sensores nos equipamentos que você escolher. Sem parar a produção e sem trocar nada do que já funciona.</p>
+            </div>
+            <div class="how-media">
+              <div class="how-card how-card-1" aria-hidden="true">
+                <div class="hc-machine">
+                  <span class="hc-machine-body"></span>
+                  <span class="hc-machine-base"></span>
+                </div>
+                <div class="hc-tag">
+                  <i class="hc-dot"></i>
+                  <div>
+                    <strong>Sensor instalado</strong>
+                    <span class="mono">Prensa hidráulica · S-04</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="how-step how-step-reverse">
+            <div class="how-text">
+              <span class="how-num mono">Passo 2</span>
+              <h3 class="split">Acompanhamos por você</h3>
+              <p>O sistema observa as máquinas o dia inteiro. Quando algo sai do normal, você fica sabendo na hora, sem precisar ir olhar.</p>
+            </div>
+            <div class="how-media">
+              <div class="how-card how-card-2" aria-hidden="true">
+                <div class="hc-toast hc-toast-ok">
+                  <i></i>
+                  <div><strong>Torno CNC</strong><span>Tudo certo por aqui</span></div>
+                  <span class="mono">08:40</span>
+                </div>
+                <div class="hc-toast hc-toast-warn">
+                  <i></i>
+                  <div><strong>Compressor</strong><span>Temperatura acima do normal</span></div>
+                  <span class="mono">09:12</span>
+                </div>
+                <div class="hc-toast hc-toast-ok">
+                  <i></i>
+                  <div><strong>Compressor</strong><span>Voltou ao normal após ajuste</span></div>
+                  <span class="mono">09:41</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="how-step">
+            <div class="how-text">
+              <span class="how-num mono">Passo 3</span>
+              <h3 class="split">Você decide com clareza</h3>
+              <p>Tudo o que importa fica num painel simples: o que está bem, o que precisa de atenção e o que aconteceu. Sem planilha, sem adivinhação.</p>
+            </div>
+            <div class="how-media">
+              <div class="how-card how-card-3" aria-hidden="true">
+                <div class="hc-summary">
+                  <span class="mono">Hoje</span>
+                  <div class="hc-summary-row">
+                    <strong>12</strong>
+                    <span>máquinas acompanhadas</span>
+                  </div>
+                  <div class="hc-summary-row hc-summary-attn">
+                    <strong>1</strong>
+                    <span>precisa de atenção</span>
+                  </div>
+                  <svg class="hc-spark" viewBox="0 0 240 48" preserveAspectRatio="none">
+                    <path d="M0 34 C30 30 40 20 70 22 S110 36 140 28 S190 10 240 14" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
     </section>
 
-    <!-- ================= TELAS ================= -->
-    <section class="screens" id="telas">
+    <!-- ================= POR QUE SYNCCION ================= -->
+    <section class="why" id="por-que">
       <div class="container">
-        <div class="section-heading">
-          <h2>Telas do sistema</h2>
-          <p>Uma visão geral das principais telas do Synccion.</p>
+        <p class="manifesto" id="manifesto">
+          Máquina parada é dinheiro parado. O Synccion existe para você descobrir antes — e cuidar do que importa sem correr atrás do problema.
+        </p>
+      </div>
+
+      <div class="container">
+        <div class="benefits" id="benefits">
+          <article class="benefit">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l9 4.5v9L12 21l-9-4.5v-9L12 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Menos surpresas</h3>
+            <p>Você sabe como cada máquina está antes de ela dar problema. Menos paradas inesperadas, menos correria no chão de fábrica.</p>
+          </article>
+
+          <article class="benefit">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="15.5" r="1.5" fill="currentColor"/></svg>
+            </div>
+            <h3>Manutenção no momento certo</h3>
+            <p>Os dados mostram quando vale a pena intervir. Você programa a manutenção com calma, em vez de reagir a uma falha.</p>
+          </article>
+
+          <article class="benefit">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 18v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 13l3-3 2.5 2.5L17 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Toda a planta num só lugar</h3>
+            <p>Uma tela, todas as máquinas. Fácil de olhar, fácil de comparar e fácil de mostrar para quem precisa decidir.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PLANOS ================= -->
+    <section class="pricing" id="planos">
+      <div class="container">
+        <div class="section-heading reveal pricing-heading">
+          <p class="eyebrow">Assinaturas</p>
+          <h2>Um plano para cada tamanho de fábrica</h2>
+          <p>Sem taxa de instalação escondida. Escolha mensal ou anual e mude de plano quando quiser.</p>
         </div>
 
-        <div class="screens-grid">
-          <div class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-frame-bar"><span></span><span></span><span></span></div>
-              <div class="screen-frame-body">tela inicial</div>
-            </div>
-            <h3>Tela inicial</h3>
-            <p>Primeiro contato do usuário, com acesso às principais funcionalidades.</p>
-          </div>
-
-          <div class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-frame-bar"><span></span><span></span><span></span></div>
-              <div class="screen-frame-body">monitoramento</div>
-            </div>
-            <h3>Monitoramento</h3>
-            <p>Acompanhamento das informações das máquinas cadastradas.</p>
-          </div>
-
-          <div class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-frame-bar"><span></span><span></span><span></span></div>
-              <div class="screen-frame-body">visualização de dados</div>
-            </div>
-            <h3>Visualização de dados</h3>
-            <p>Indicadores e elementos visuais para interpretar as informações coletadas.</p>
-          </div>
-
-          <div class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-frame-bar"><span></span><span></span><span></span></div>
-              <div class="screen-frame-body">acompanhamento</div>
-            </div>
-            <h3>Acompanhamento das máquinas</h3>
-            <p>Consulta das condições e alterações registradas nos equipamentos.</p>
-          </div>
+        <div class="billing-toggle reveal" id="billing-toggle" role="group" aria-label="Período de cobrança">
+          <span class="billing-pill" id="billing-pill" aria-hidden="true"></span>
+          <button type="button" class="billing-btn is-active" data-cycle="mensal" aria-pressed="true">Mensal</button>
+          <button type="button" class="billing-btn" data-cycle="anual" aria-pressed="false">Anual</button>
         </div>
+
+        <div class="plans" id="plans">
+
+          <article class="plan" data-plan="essencial" data-monthly="800">
+            <div class="plan-head">
+              <h3>Essencial</h3>
+              <p>Para começar a acompanhar as máquinas mais críticas.</p>
+            </div>
+            <div class="plan-price">
+              <span class="plan-currency">R$</span>
+              <span class="plan-amount" data-amount>800</span>
+              <span class="plan-period" data-period>/mês</span>
+            </div>
+            <p class="plan-note" data-note>Cobrado mensalmente</p>
+            <ul class="plan-features">
+              <li>Até 5 máquinas</li>
+              <li>Monitoramento em tempo real</li>
+              <li>Alertas no painel e por e-mail</li>
+              <li>Histórico de 3 meses</li>
+              <li>Suporte em horário comercial</li>
+            </ul>
+            <a href="login/login.html?plano=essencial&amp;ciclo=mensal#criar-conta" class="btn btn-ghost plan-cta" data-cta>Começar com Essencial</a>
+          </article>
+
+          <article class="plan plan-featured" data-plan="profissional" data-monthly="1600">
+            <span class="plan-badge">Mais escolhido</span>
+            <div class="plan-head">
+              <h3>Profissional</h3>
+              <p>Para fábricas que querem toda a linha sob controle.</p>
+            </div>
+            <div class="plan-price">
+              <span class="plan-currency">R$</span>
+              <span class="plan-amount" data-amount>1.600</span>
+              <span class="plan-period" data-period>/mês</span>
+            </div>
+            <p class="plan-note" data-note>Cobrado mensalmente</p>
+            <ul class="plan-features">
+              <li>Até 20 máquinas</li>
+              <li>Tudo do Essencial</li>
+              <li>Identificação de anomalias com limites por máquina</li>
+              <li>Histórico de 12 meses e relatórios mensais</li>
+              <li>Suporte prioritário</li>
+            </ul>
+            <a href="login/login.html?plano=profissional&amp;ciclo=mensal#criar-conta" class="btn btn-primary plan-cta" data-cta>Começar com Profissional</a>
+          </article>
+
+          <article class="plan" data-plan="industrial" data-monthly="3000">
+            <div class="plan-head">
+              <h3>Industrial</h3>
+              <p>Para operações com várias plantas e equipes.</p>
+            </div>
+            <div class="plan-price">
+              <span class="plan-currency">R$</span>
+              <span class="plan-amount" data-amount>3.000</span>
+              <span class="plan-period" data-period>/mês</span>
+            </div>
+            <p class="plan-note" data-note>Cobrado mensalmente</p>
+            <ul class="plan-features">
+              <li>Máquinas ilimitadas</li>
+              <li>Tudo do Profissional</li>
+              <li>Várias plantas e perfis de acesso por equipe</li>
+              <li>Histórico completo e exportação de dados</li>
+              <li>Gerente de conta dedicado</li>
+            </ul>
+            <a href="login/login.html?plano=industrial&amp;ciclo=mensal#criar-conta" class="btn btn-ghost plan-cta" data-cta>Começar com Industrial</a>
+          </article>
+
+        </div>
+
+        <p class="pricing-foot reveal">Valores em reais, já com impostos. Precisa de algo diferente? <a href="#cta">Fale com a gente</a>.</p>
       </div>
     </section>
 
     <!-- ================= CTA ================= -->
     <section class="cta-section" id="cta">
-      <div class="container cta-box">
+      <div class="container cta-box reveal">
         <h2>Pronto para centralizar o monitoramento das suas máquinas?</h2>
         <p>Fale com a equipe do Synccion e veja o sistema em funcionamento.</p>
         <a href="#" class="btn btn-primary btn-lg">Solicitar demonstração</a>
+      </div>
+    </section>
+
+    <!-- ================= NEWSLETTER ================= -->
+    <section class="newsletter" id="newsletter">
+      <div class="container">
+        <div class="news-card reveal">
+          <svg class="news-plane" id="news-plane" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M6 30L58 8L40 58L30 36L6 30Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M30 36L58 8" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          </svg>
+
+          <div class="news-copy">
+            <p class="eyebrow">Newsletter</p>
+            <h2>Boas práticas de manutenção, direto no seu e-mail</h2>
+            <p>Uma vez por mês, sem enrolação: o que estamos aprendendo com fábricas que acompanham suas máquinas, novidades do Synccion e dicas práticas para a sua equipe.</p>
+            <ul class="news-points">
+              <li>Conteúdo curto, para ler em cinco minutos</li>
+              <li>Sem spam. Você sai quando quiser, em um clique</li>
+              <li>Seus dados protegidos conforme a LGPD</li>
+            </ul>
+          </div>
+
+          <form class="news-form" id="news-form" action="#" method="post" novalidate>
+            <label for="news-email" class="news-label">Seu e-mail de trabalho</label>
+            <div class="news-field">
+              <input type="email" id="news-email" name="email" placeholder="voce@empresa.com" required autocomplete="email">
+              <button type="submit" class="news-btn" id="news-btn">
+                <span class="news-btn-label">Quero receber</span>
+                <span class="news-btn-spinner" aria-hidden="true"></span>
+              </button>
+            </div>
+            <small class="news-error" id="news-error" role="alert"></small>
+
+            <label class="news-consent">
+              <input type="checkbox" id="news-consent" name="consent">
+              <span class="news-check"></span>
+              <span>Aceito receber e-mails do Synccion e li a <a href="#">Política de Privacidade</a>. Posso cancelar quando quiser.</span>
+            </label>
+
+            <div class="news-success" id="news-success" hidden>
+              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <circle class="news-success-ring" cx="24" cy="24" r="21" stroke="currentColor" stroke-width="2.5"/>
+                <path class="news-success-check" d="M14 25l7 7 13-14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <strong>Pronto! Você está na lista.</strong>
+                <span>Enviamos um e-mail de confirmação para <b id="news-sent-to"></b>.</span>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -284,7 +555,8 @@
         <ul>
           <li><a href="#funcionalidades">Funcionalidades</a></li>
           <li><a href="#como-funciona">Como funciona</a></li>
-          <li><a href="#telas">Telas</a></li>
+          <li><a href="#por-que">Por que Synccion</a></li>
+          <li><a href="#planos">Planos</a></li>
         </ul>
       </div>
 
@@ -305,12 +577,33 @@
       </div>
     </div>
 
+    <div class="container footer-trust">
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.9-8 9-4.8-1.1-8-4.5-8-9V6l8-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>LGPD</strong><small>Em conformidade com a Lei 13.709/2018</small></span>
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor"/></svg>
+        <span><strong>Conexão segura</strong><small>Criptografia SSL/TLS de ponta a ponta</small></span>
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M5 5l14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span><strong>Privacidade por padrão</strong><small>Seus dados só para o que você autorizar</small></span>
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span><strong>Dados sob seu controle</strong><small>Acesso, correção e exclusão quando pedir</small></span>
+      </div>
+    </div>
+
     <div class="container footer-bottom">
       <span>© 2026 SyncSentrix. Todos os direitos reservados.</span>
       <span class="mono">Synccion — Sistema de Monitoramento Industrial</span>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

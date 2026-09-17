@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$email || empty($senha)) {
         // Redireciona com erro se os campos estiverem vazios
-        header('Location: index.html?error=campos_invalidos');
+        header('Location: login.html?error=campos_invalidos');
         exit;
     }
 
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
         // Erro de credenciais
-        header('Location: index.html?error=credenciais_incorretas');
+        header('Location: login.html?error=credenciais_incorretas');
         exit;
     }
     */

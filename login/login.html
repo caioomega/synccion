@@ -1,107 +1,227 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Synccion</title>
-    <!-- Fonte Google Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar | Synccion</title>
+<link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="login-container">
-        <!-- Lado Esquerdo: Branding/Apresentação -->
-        <div class="brand-side">
-            <div class="brand-logo">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+  <!-- fundo: rede de nós + grade blueprint -->
+  <canvas id="net" class="net" aria-hidden="true"></canvas>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+
+  <a href="../index.html" class="back-link" id="back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Voltar ao site
+  </a>
+
+  <main class="login-wrap">
+    <div class="login-card" id="login-card">
+
+      <div class="card-head">
+        <div class="card-logo">
+          <svg width="34" height="34" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle class="logo-c1" cx="7" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle class="logo-c2" cx="19" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
+            <path class="logo-link" d="M11 13H15" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Synccion</span>
+        </div>
+        <span class="card-tag mono">SyncSentrix · acesso</span>
+      </div>
+
+      <!-- abas -->
+      <div class="auth-tabs" id="auth-tabs" role="tablist" aria-label="Entrar ou criar conta">
+        <span class="auth-tab-pill" id="auth-tab-pill" aria-hidden="true"></span>
+        <button type="button" class="auth-tab is-active" data-panel="login" role="tab" aria-selected="true" id="tab-login">Entrar</button>
+        <button type="button" class="auth-tab" data-panel="signup" role="tab" aria-selected="false" id="tab-signup">Criar conta</button>
+      </div>
+
+      <div class="auth-panels" id="auth-panels">
+
+        <!-- ===== ENTRAR ===== -->
+        <section class="auth-panel is-active" id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+          <div class="card-title">
+            <h1>Acessar plataforma</h1>
+            <p>Entre com suas credenciais para continuar.</p>
+          </div>
+
+          <!-- mensagens vindas do PHP (?error=...) ou da validação em JS -->
+          <div class="alert-box" id="alert" role="alert" hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 4.5v9L12 21l-9-4.5v-9L12 3z" stroke="currentColor" stroke-width="1.8"/><path d="M12 12v-3M12 15h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span id="alert-text">E-mail ou senha inválidos.</span>
+          </div>
+
+          <form action="login.php" method="POST" id="loginForm" novalidate>
+            <div class="field" data-field>
+              <input type="email" id="email" name="email" placeholder=" " required autocomplete="email">
+              <label for="email">E-mail corporativo</label>
+              <span class="field-line"></span>
+              <small class="error-msg"></small>
+            </div>
+
+            <div class="field" data-field>
+              <input type="password" id="password" name="password" placeholder=" " required autocomplete="current-password">
+              <label for="password">Senha</label>
+              <span class="field-line"></span>
+              <button type="button" class="toggle-password" data-toggle="password" aria-label="Mostrar senha" aria-pressed="false">
+                <svg class="eye" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" stroke="currentColor" stroke-width="1.6"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/>
+                  <path class="eye-slash" d="M4 4l16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
                 </svg>
-                <span>Synccion</span>
-            </div>
-            
-            <div class="brand-content">
-                <span class="tag">SyncSentrix</span>
-                <h1>Monitoramento industrial centralizado.</h1>
-                <p>Acesse sua conta para visualizar indicadores das suas máquinas e o status em tempo real.</p>
+              </button>
+              <small class="error-msg"></small>
             </div>
 
-            <div class="brand-footer">
-                <p>&copy; 2026 Synccion. Todos os direitos reservados.</p>
-            </div>
-        </div>
-
-        <!-- Lado Direito: Form de Login -->
-        <div class="form-side">
-            <div class="form-header">
-                <h2>Acessar plataforma</h2>
-                <p>Insira suas credenciais para continuar</p>
+            <div class="options-row">
+              <label class="check">
+                <input type="checkbox" name="remember" id="remember">
+                <span class="check-box"></span>
+                <span>Lembrar deste dispositivo</span>
+              </label>
+              <a href="esqueci-senha.php" class="forgot-link">Esqueceu a senha?</a>
             </div>
 
-            <!-- Preparado para PHP: action envia via POST para login.php -->
-            <form action="login.php" method="POST" id="loginForm" novalidate>
-                
-                <!-- Feedback visual para mensagens vindas do PHP (ex: Erro de senha) -->
-                <!-- No PHP, basta dar um echo numa div se houver $_SESSION['erro'] ou similar -->
-                <div class="alert-box error" id="jsAlert" style="display: none;">
-                    E-mail ou senha inválidos.
+            <button type="submit" class="btn-submit" id="btnSubmit">
+              <span class="btn-label">Entrar no sistema</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+          </form>
+
+          <div class="card-foot">
+            <p>Não tem uma conta? <button type="button" class="link-btn" data-goto="signup">Criar conta</button></p>
+          </div>
+        </section>
+
+        <!-- ===== CRIAR CONTA ===== -->
+        <section class="auth-panel" id="panel-signup" role="tabpanel" aria-labelledby="tab-signup" hidden>
+          <div class="card-title">
+            <h1>Criar sua conta</h1>
+            <p>Leva menos de um minuto. Escolha o plano e comece a acompanhar suas máquinas.</p>
+          </div>
+
+          <form action="cadastro.php" method="POST" id="signupForm" novalidate>
+            <div class="field-row">
+              <div class="field" data-field>
+                <input type="text" id="su-name" name="nome" placeholder=" " required autocomplete="name">
+                <label for="su-name">Seu nome</label>
+                <span class="field-line"></span>
+                <small class="error-msg"></small>
+              </div>
+              <div class="field" data-field>
+                <input type="text" id="su-company" name="empresa" placeholder=" " required autocomplete="organization">
+                <label for="su-company">Empresa</label>
+                <span class="field-line"></span>
+                <small class="error-msg"></small>
+              </div>
+            </div>
+
+            <div class="field" data-field>
+              <input type="email" id="su-email" name="email" placeholder=" " required autocomplete="email">
+              <label for="su-email">E-mail corporativo</label>
+              <span class="field-line"></span>
+              <small class="error-msg"></small>
+            </div>
+
+            <div class="field" data-field>
+              <input type="password" id="su-password" name="password" placeholder=" " required autocomplete="new-password" minlength="8">
+              <label for="su-password">Crie uma senha</label>
+              <span class="field-line"></span>
+              <button type="button" class="toggle-password" data-toggle="su-password" aria-label="Mostrar senha" aria-pressed="false">
+                <svg class="eye" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" stroke="currentColor" stroke-width="1.6"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/>
+                  <path class="eye-slash" d="M4 4l16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <small class="error-msg"></small>
+            </div>
+
+            <div class="strength" id="strength" aria-live="polite">
+              <div class="strength-bars"><i></i><i></i><i></i><i></i></div>
+              <span class="strength-label" id="strength-label">Mínimo de 8 caracteres, com letras e números</span>
+            </div>
+
+            <div class="field" data-field>
+              <input type="password" id="su-confirm" name="password_confirm" placeholder=" " required autocomplete="new-password">
+              <label for="su-confirm">Confirme a senha</label>
+              <span class="field-line"></span>
+              <small class="error-msg"></small>
+            </div>
+
+            <!-- plano -->
+            <fieldset class="plan-pick" id="plan-pick">
+              <div class="plan-pick-head">
+                <legend>Plano</legend>
+                <div class="cycle-pick" id="cycle-pick" role="group" aria-label="Período de cobrança">
+                  <button type="button" class="cycle-btn is-active" data-cycle="mensal" aria-pressed="true">Mensal</button>
+                  <button type="button" class="cycle-btn" data-cycle="anual" aria-pressed="false">Anual</button>
                 </div>
+              </div>
+              <input type="hidden" name="ciclo" id="su-cycle" value="mensal">
 
-                <div class="input-group">
-                    <label for="email">E-mail corporativo</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="seu.nome@empresa.com" 
-                        required 
-                        autocomplete="email"
-                    >
-                    <small class="error-msg"></small>
-                </div>
+              <label class="plan-opt">
+                <input type="radio" name="plano" value="essencial" data-monthly="800">
+                <span class="plan-opt-box">
+                  <span class="plan-opt-name">Essencial</span>
+                  <span class="plan-opt-desc">Até 5 máquinas</span>
+                  <span class="plan-opt-price mono" data-price>R$ 800/mês</span>
+                </span>
+              </label>
+              <label class="plan-opt">
+                <input type="radio" name="plano" value="profissional" data-monthly="1600" checked>
+                <span class="plan-opt-box">
+                  <span class="plan-opt-name">Profissional <em>Mais escolhido</em></span>
+                  <span class="plan-opt-desc">Até 20 máquinas</span>
+                  <span class="plan-opt-price mono" data-price>R$ 1.600/mês</span>
+                </span>
+              </label>
+              <label class="plan-opt">
+                <input type="radio" name="plano" value="industrial" data-monthly="3000">
+                <span class="plan-opt-box">
+                  <span class="plan-opt-name">Industrial</span>
+                  <span class="plan-opt-desc">Máquinas ilimitadas</span>
+                  <span class="plan-opt-price mono" data-price>R$ 3.000/mês</span>
+                </span>
+              </label>
+            </fieldset>
 
-                <div class="input-group">
-                    <div class="label-wrapper">
-                        <label for="password">Senha</label>
-                        <a href="esqueci-senha.php" class="forgot-link">Esqueceu a senha?</a>
-                    </div>
-                    <div class="password-wrapper">
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
-                            placeholder="••••••••" 
-                            required
-                        >
-                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar/Ocultar Senha">
-                            👁️
-                        </button>
-                    </div>
-                    <small class="error-msg"></small>
-                </div>
+            <label class="check consent" data-field>
+              <input type="checkbox" name="aceite" id="su-consent">
+              <span class="check-box"></span>
+              <span>Li e aceito os <a href="#">Termos de uso</a> e a <a href="#">Política de Privacidade</a> (LGPD).</span>
+            </label>
+            <small class="error-msg consent-error" id="su-consent-error"></small>
 
-                <div class="options-group">
-                    <label class="checkbox-container">
-                        <input type="checkbox" name="remember" id="remember">
-                        <span class="checkmark"></span>
-                        Lembrar deste dispositivo
-                    </label>
-                </div>
+            <button type="submit" class="btn-submit" id="btnSignup">
+              <span class="btn-label">Criar conta</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+          </form>
 
-                <button type="submit" class="btn-primary" id="btnSubmit">
-                    <span>Entrar no sistema</span>
-                </button>
-            </form>
+          <div class="card-foot">
+            <p>Já tem uma conta? <button type="button" class="link-btn" data-goto="login">Entrar</button></p>
+          </div>
+        </section>
 
-            <div class="form-footer">
-                <p>Não tem uma conta? <a href="#">Solicitar demonstração</a></p>
-            </div>
-        </div>
+      </div>
     </div>
+  </main>
 
-    <script src="script.js"></script>
+  <footer class="login-footer" id="login-footer">
+    <span>© 2026 SyncSentrix. Todos os direitos reservados.</span>
+    <span class="mono">Synccion — Sistema de Monitoramento Industrial</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
